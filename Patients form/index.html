@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>ADD PEOPLE WITH COVID-19</title>
+    <!-- LINK WITH CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!--Only for demo purpose - no need to add.-->
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+	
+</head>
+<body>
+		
+ <!-- HEADING OF A FORM -->
+<header class="ScriptHeader">
+    <div class="rt-container">
+    	<div class="col-rt-12">
+        	<div class="rt-heading">
+            	<h1>ADD PEOPLE WITH COVID-19</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="rt-container">
+          <div class="col-rt-12">
+              <div class="Scriptcontent">
+                <div class="card card-signin my-5">
+                <div class="card-body">
+              
+   <!-- SAVE PEOPLE WITH COVID HERE -->
+   <center>
+    <form action="index.php"method="POST">
+        <p class="helper-text">we will win this fight!</p>
+        
+        <div class="field-row">
+            <label class="form-label" for="firstName">First name</label>
+            <input type="text" id="firstName"name="firstName" class="field text-field first-name-field"   >
+            <span class="message"></span>
+        </div>
+
+        <div class="field-row">
+            <label class="form-label cf" for="lastName">Last name</label>
+            <input type="text" id="lastName"name="lastName" class="field text-field last-name-field" >
+            <span class="message"></span>
+        </div>
+
+        <div class="field-row">
+            <label class="form-label" for="id">ID number</label>
+            <input type="text" id="id" name="id"class="field text-field initials-field">
+            <span class="message"></span>
+        </div>
+        
+                          
+        <div class="field-row">
+            <label class="form-label" for="dateOfBirth">Date of birth</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth"class="field date-field dob-field" min="1900-01-01" max="2020-09-18"  required>
+            <span class="message"></span>
+        </div>
+
+        
+        <div class="field-row">
+            <label class="form-label" for="tel">Phone number</label>
+            <input type="tel" id="tel"name="PhoneNumber" class="field text-field tel-field" > 
+            <span class="message"></span>
+        </div>
+
+           <div class="field-row">
+            <label class="form-label" for="hs">Town</label>
+            <input type="text" id="Town" name="Town" class="field text-field hs-field" >
+            <span class="message"></span>
+        </div>
+                          
+       <div class="field-row">
+            <label class="form-label" for="tel">Permanent Address</label>
+            <input type="tel" id="address"name="Address" class="field text-field address-field">
+            <span class="message"></span>
+        </div>
+                          </div>
+                          
+    
+        <div class="field-row" align="LEFT">
+            <label class="form-label"></label>
+            <button class="form-button"name="SAVE" type="SAVE">SAVE PATIENT</button>
+        </div>
+
+        <div class="field-row" align="CENTER">
+            <label class="form-label"></label>
+            <button class="form-button"name="CLEAR" type="CLEAR">CLEAR</button>
+        </div>
+
+        <div class="field-row" align="RIGHT">
+            <label class="form-label"></label>
+           <button class="form-button"name="LOGOUT" type="LOGOUT">LOGOUT</button>
+  
+        </div>
+    </form>
+</center>
+   <!-- End PATIENTS FORM-->
+                  
+    		
+           </div>
+       </div>
+    		</div>
+		</div>
+    </div>
+</section>
+     
+
+
+    <!-- Analytics -->
+
+	</body>
+</html>
+<?php
+$conn=mysqli_connect("localhost","root","","coronavirus");
+  
+  if(isset($_POST["SAVE"])){
+
+
+
+
+$firstName =$_POST["firstName"];
+$lastName =$_POST["lastName"];
+$id =$_POST["id"];
+$dateOfBirth =$_POST["dateOfBirth"];
+$tel =$_POST["tel"];
+$Town =$_POST["Town"];
+$Address =$_POST["Address"];
+
+  $sql="INSERT Into patients(firstName,lastName,IDNumber,DateofBirth,PhoneNumber,Town,Address)VALUES('$firstName','$lastName','$id','$dateOfBirth','$tel','$Town','$Address') ";
+  
+  if(mysqli_query($conn,$sql)){
+
+    echo"SAVED PERFECT";
+  }
+  else
+  {
+    echo "Error data not saved";
+
+  }
+
+
+}
+echo "not connected with data base";
+?>
